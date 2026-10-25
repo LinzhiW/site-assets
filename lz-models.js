@@ -10,7 +10,8 @@
  *      data-href="https://www.linzhigettingit.com/projects/..."
  *      data-orbit="-90deg 60deg 1.3m"   optional, camera start
  *      data-fov="30deg"                 optional
- *      data-animate></div>              optional, plays the model's animation
+ *      data-animate                     optional, plays the model's animation
+ *      data-new-tab></div>              optional, opens data-href in a new tab
  */
 (function () {
   var VIEWER = "https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js";
@@ -26,7 +27,7 @@
     document.head.appendChild(s);
   }
 
-  function clickThrough(mv, href) {
+  function clickThrough(mv, href, newTab) {
     var down = null;
     mv.style.cursor = "pointer";
     mv.addEventListener("pointerdown", function (e) {
@@ -37,7 +38,9 @@
       var moved = Math.hypot(e.clientX - down.x, e.clientY - down.y);
       var quick = Date.now() - down.t < CLICK_MAX_MS;
       down = null;
-      if (moved < CLICK_SLOP_PX && quick) window.location.href = href;
+      if (!(moved < CLICK_SLOP_PX && quick)) return;
+      if (newTab) window.open(href, "_blank", "noopener");
+      else window.location.href = href;
     }, true);
     mv.addEventListener("pointercancel", function () { down = null; }, true);
   }
@@ -59,7 +62,7 @@
     if ("animate" in el.dataset) mv.setAttribute("autoplay", "");
     mv.setAttribute("alt", el.getAttribute("aria-label") || "");
     mv.style.cssText = "width:100%;height:100%;background:transparent;--poster-color:transparent;--progress-bar-height:0;touch-action:pan-y;";
-    if (el.dataset.href) clickThrough(mv, el.dataset.href);
+    if (el.dataset.href) clickThrough(mv, el.dataset.href, "newTab" in el.dataset);
     el.appendChild(mv);
   }
 

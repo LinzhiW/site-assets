@@ -1,12 +1,12 @@
-# site-assets
+﻿# site-assets
 
 3D models and the loader script for the homepage of [linzhigettingit.com](https://www.linzhigettingit.com).
 
 Served through jsDelivr, pinned to a tag:
 
 ```
-https://cdn.jsdelivr.net/gh/LinzhiW/site-assets@v1/lz-models.js
-https://cdn.jsdelivr.net/gh/LinzhiW/site-assets@v1/web/<name>.glb
+https://cdn.jsdelivr.net/gh/LinzhiW/site-assets@v2/lz-models.js
+https://cdn.jsdelivr.net/gh/LinzhiW/site-assets@v2/web/<name>.glb
 ```
 
 | File | Object |
