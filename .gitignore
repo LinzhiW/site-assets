@@ -1,0 +1,5 @@
+# Originals downloaded from TinyGLB stay local; only the web copies are published.
+models/
+test.html
+shrink_glb.py
+__pycache__/
